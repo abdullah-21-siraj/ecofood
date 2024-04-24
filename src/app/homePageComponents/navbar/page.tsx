@@ -26,13 +26,15 @@ export default function NavBar() {
 
         <nav className="flex flex-wrap lg:flex-row p-2 justify-between items-center">
           <div className="text-center m-3 font-bold">
-            <Image
-              src="/ecofood.png"
-              width={100}
-              height={50}
-              alt="logo"
-              className="rounded-lg"
-            />
+            <Link href="/">
+              <Image
+                src="/ecofood.png"
+                width={100}
+                height={50}
+                alt="logo"
+                className="rounded-lg"
+              />
+            </Link>
           </div>
           <div className="flex flex-row items-center justify-center flex-grow lg:flex">
             <div className="text-center m-3 hover:text-white transition duration-300 hidden lg:block md:block">
@@ -138,7 +140,7 @@ export default function NavBar() {
             About Us
           </Link>
           <Link
-            href="/"
+            href="/contactUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Contact Us
@@ -204,7 +206,7 @@ export default function NavBar() {
             About Us
           </Link>
           <Link
-            href="/"
+            href="/ContactUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Contact Us

@@ -59,7 +59,7 @@ function Footer() {
               </Link>
             </li>
             <li className="my-2">
-              <Link href="/" className="block hover:text-blue-500">
+              <Link href="/contactUs" className="block hover:text-blue-500">
                 Contact Us
               </Link>
             </li>

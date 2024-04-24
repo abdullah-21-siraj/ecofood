@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <>
-      <div className="flex justify-center lg:justify-start ml-4 lg:ml-20 my-4 lg:my-20 relative">
-        <div className="max-w-md mx-4 lg:mx-0 p-6 rounded-lg relative z-10 bg-white bg-opacity-80">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mx-4 lg:mx-20 my-4 lg:my-20 relative">
+        <div className="max-w-md p-6 rounded-lg relative z-10 bg-white bg-opacity-80">
           <div className="text-center lg:text-left">
             <span className="text-xl lg:text-4xl font-semibold text-green-600">
               SPECIAL OFFER
@@ -39,6 +39,15 @@ export default function HeroSection() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="max-w-md p-6 rounded-lg relative z-10 bg-white bg-opacity-80">
+          <Image
+            className="w-full h-auto rounded-md"
+            src="/randomPhoto.jpg"
+            alt="Image"
+            width={600}
+            height={600}
+          />
         </div>
       </div>
     </>
