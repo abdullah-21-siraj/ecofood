@@ -140,7 +140,7 @@ export default function NavBar() {
             About Us
           </Link>
           <Link
-            href="/contactUs"
+            href="/pages/contactUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Contact Us
