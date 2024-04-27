@@ -50,7 +50,11 @@ export default function NavBar() {
             </div>
           </div>
 
+<<<<<<< Updated upstream
           <div className="ml-auto flex flex-row items-center justify-center lg:justify-end hidden lg:block md:block ">
+=======
+          <div className="ml-auto flex flex-row items-center justify-center lg:justify-end  lg:block md:block">
+>>>>>>> Stashed changes
             <div className="text-center m-3 hover:text-white transition duration-300">
               My Account
             </div>
