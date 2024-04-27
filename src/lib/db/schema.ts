@@ -15,17 +15,17 @@ import {
   export const db = drizzle(sql);
 
 export const UsersTable = pgTable(
-  'users_eco',
+  'eco_users',
   {
     id: text('id').primaryKey(),
     email: text('email').unique(),
     password: text('password'),
-    username: text('username').notNull(),
+    username: text('username'),
     fname: text('fname'),
     lname: text('lname'),
     gender: text("gender"),
     dob: text("dob"),
-    createdAt: timestamp('createdAt').defaultNow().notNull(),
+    created_at: timestamp('created_at').defaultNow().notNull(),
   }
 );
 
