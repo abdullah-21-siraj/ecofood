@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SearchComponent from "@/app/searchComponents";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showSubTypes, setShowSubTypes] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -16,7 +18,7 @@ export default function NavBar() {
       <header className="bg-contrast-green-500 text-black bg-zinc-100">
         <div className="flex flex-row flex-grow lg:flex bg-emerald-600 text-white">
           <Link
-            href="/"
+            href="/pages/contactUs"
             className="p-2 bg-contrast-green-700 flex-grow hover:text-white transition duration-300 hidden lg:block md:block text-center"
           >
             Get 15% Off Your First Full-Price Purchase When You Subscribe To Our
@@ -24,7 +26,7 @@ export default function NavBar() {
           </Link>
         </div>
 
-        <nav className="flex flex-wrap lg:flex-row p-2 justify-between items-center">
+        <nav className="flex flex-wrap lg:flex-row p-2 justify-between items-center bg-green-100">
           <div className="text-center m-3 font-bold">
             <Link href="/">
               <Image
@@ -48,7 +50,7 @@ export default function NavBar() {
             </div>
           </div>
 
-          <div className="ml-auto flex flex-row items-center justify-center lg:justify-end hidden lg:block md:block">
+          <div className="ml-auto flex flex-row items-center justify-center lg:justify-end hidden lg:block md:block ">
             <div className="text-center m-3 hover:text-white transition duration-300">
               My Account
             </div>
@@ -90,7 +92,7 @@ export default function NavBar() {
             </div>
           </div>
         </nav>
-        <div className="flex flex-wrap justify-center p-2 lg:bg-white md:bg-white">
+        <div className="flex flex-wrap justify-center p-2 lg:bg-emerald-200 md:bg-emerald-200">
           <Link
             href="/"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
@@ -98,43 +100,61 @@ export default function NavBar() {
             Home
           </Link>
           <Link
-            href="/"
+            href="/pages/shop"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Shop
           </Link>
           <Link
-            href="/"
+            href="/pages/blog"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Blog
           </Link>
           <Link
             href="/"
-            className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
+            className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block relative"
+            onMouseEnter={() => setShowSubTypes(true)}
+            onMouseLeave={() => setShowSubTypes(false)}
           >
             Features
+            {showSubTypes && (
+              <div className="absolute top-full left-0 bg-white p-4 border border-gray-300 shadow-lg flex">
+                <div className="mx-3">
+                  <Link href="/featuresType/sweet">Sweet</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/sour">Sour</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/mild">Mild</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/toxic">Toxic</Link>
+                </div>
+              </div>
+            )}
           </Link>
           <Link
-            href="/"
+            href="/pages/fruits"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Fruits
           </Link>
           <Link
-            href="/"
+            href="/pages/vegetables"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Vegetables
           </Link>
           <Link
-            href="/"
+            href="/pages/delivery"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Delivery
           </Link>
           <Link
-            href="/"
+            href="/pages/aboutUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             About Us
@@ -146,7 +166,7 @@ export default function NavBar() {
             Contact Us
           </Link>
           <Link
-            href="/"
+            href="/pages/stores"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block"
           >
             Stores
@@ -164,55 +184,73 @@ export default function NavBar() {
             Home
           </Link>
           <Link
-            href="/"
+            href="/pages/shop"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Shop
           </Link>
           <Link
-            href="/"
+            href="/pages/blog"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Blog
           </Link>
           <Link
             href="/"
-            className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
+            className="text-center m-3 hover:text-contrast-green-500 transition duration-300 hidden lg:block md:block relative"
+            onMouseEnter={() => setShowSubTypes(true)}
+            onMouseLeave={() => setShowSubTypes(false)}
           >
             Features
+            {showSubTypes && (
+              <div className="absolute top-full left-0 bg-white p-4 border border-gray-300 shadow-lg flex">
+                <div className="mx-3">
+                  <Link href="/featuresType/sweet">Sweet</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/sour">Sour</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/mild">Mild</Link>
+                </div>
+                <div className="mx-3">
+                  <Link href="/featuresType/toxic">Toxic</Link>
+                </div>
+              </div>
+            )}
           </Link>
           <Link
-            href="/"
+            href="/pages/fruits"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Fruits
           </Link>
           <Link
-            href="/"
+            href="/pages/vegetables"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Vegetables
           </Link>
           <Link
-            href="/"
+            href="/pages/delivery"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Delivery
           </Link>
           <Link
-            href="/"
+            href="/pages/aboutUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             About Us
           </Link>
           <Link
-            href="/ContactUs"
+            href="/pages/contactUs"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Contact Us
           </Link>
           <Link
-            href="/"
+            href="/pages/stores"
             className="text-center m-3 hover:text-contrast-green-500 transition duration-300"
           >
             Stores

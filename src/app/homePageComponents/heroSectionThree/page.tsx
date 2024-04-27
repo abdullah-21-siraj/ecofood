@@ -1,5 +1,6 @@
 import Image from "next/image";
-import products from "./product";
+import products from "../../product";
+import HeartButton from "@/app/heartButton";
 function HeroSectionThree() {
   return (
     <div className="my-10">
@@ -10,12 +11,12 @@ function HeroSectionThree() {
         Shop And Save <br /> With Our Online Weekly Ad
       </div>
       <div className="flex flex-wrap justify-center md:justify-between my-10">
-        {products.map((product) => (
+        {products.slice(0, 4).map((product) => (
           <div
             key={product.id}
-            className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 m-4"
+            className="w-full sm:w-1/2 md:w-1/4 px-2 mb-2 sm:mb-4"
           >
-            <div className="max-w-xs mx-auto bg-neutral-200 rounded-sm  overflow-hidden shadow-lg p-3">
+            <div className="max-w-xs mx-auto bg-neutral-200 rounded-sm overflow-hidden shadow-lg p-3">
               <img
                 src={product.image}
                 alt="Product Image"
@@ -27,22 +28,14 @@ function HeroSectionThree() {
                 </span>
               </div>
               <div className="px-4 py-2">
-                <p className="text-gray-700">{product.description}</p>
+                <p className="text-gray-700">{product.name}</p>
               </div>
               <div className="py-2 mx-2 flex justify-between">
                 <button className="bg-emerald-600 hover:bg-gray-400 text-white p-1 rounded m-2">
                   Add to Cart
                 </button>
-                <button className="  text-white p-1 rounded m-2">
-                  <div className="hover:bg-amber-400 rounded-full p-1">
-                    <Image
-                      src="/heart.png"
-                      width={20}
-                      height={20}
-                      alt="heart"
-                      className="w-full h-full"
-                    />
-                  </div>
+                <button className="text-white p-1 rounded m-2">
+                  <HeartButton />
                 </button>
               </div>
             </div>

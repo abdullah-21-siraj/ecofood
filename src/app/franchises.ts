@@ -1,0 +1,42 @@
+export const franchises = [
+  {
+    name: "Eco Food Haven",
+    id: "EFH001",
+    address: "123 Green Street, EcoTown, USA",
+    phone: "+1 (555) 123-4567",
+    email: "info@ecofoodhaven.com",
+    location: "Urban",
+  },
+  {
+    name: "Green Bite Market",
+    id: "GBM002",
+    address: "456 Earth Avenue, Sustainable City, USA",
+    phone: "+1 (555) 987-6543",
+    email: "contact@greenbitemarket.com",
+    location: "Suburban",
+  },
+  {
+    name: "Organic Oasis",
+    id: "OO003",
+    address: "789 Nature Boulevard, EcoVillage, USA",
+    phone: "+1 (555) 567-8901",
+    email: "hello@organicoasis.net",
+    location: "Rural",
+  },
+  {
+    name: "Nature's Pantry",
+    id: "NP004",
+    address: "101 Forest Lane, Green Valley, USA",
+    phone: "+1 (555) 234-5678",
+    email: "contact@naturespantry.org",
+    location: "Coastal",
+  },
+  {
+    name: "Eco Delight Market",
+    id: "EDM005",
+    address: "210 Eco Way, Harmony Heights, USA",
+    phone: "+1 (555) 345-6789",
+    email: "info@ecodelightmarket.com",
+    location: "Mountainous",
+  },
+];

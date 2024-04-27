@@ -24,7 +24,7 @@ function Footer() {
               </Link>
             </li>
             <li className="my-2">
-              <Link href="/" className="block hover:text-blue-500">
+              <Link href="/pages/aboutUs" className="block hover:text-blue-500">
                 About Us
               </Link>
             </li>
