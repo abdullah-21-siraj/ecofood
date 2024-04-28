@@ -1,83 +1,134 @@
 "use client";
-import React from "react";
+import { KeyRoundIcon, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+
 
 const LoginPage = () => {
+
+
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  function onClickRoute()
+  {
+    router.push("/signup");
+  }
+
+  async function onClickSubmitLogin() {
+    try {
+      const response = await fetch("/api/authenticate/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+
+      });
+      if (!response.ok) {
+        alert("Error submitting data");
+        return;
+      }
+
+      alert("Login Successful");
+      return;
+
+    } catch (error) {
+
+    }
+
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex  flex-col items-start justify-center bg-gray-50 py-3 px-4 sm:px-6 lg:px-8">
+    <span className="px-14 text-sm text-[#3A7B74]">Home {"->"} Log in to your account</span>
+    
+    <div className="min-h-screen flex md:flex-row flex-col space-y-32 md:space-y-0  items-start justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="md:w-[50%] w-full px-6 flex flex-col space-y-6 items-left justify-left">
+      
+        <h1 className="text-3xl font-bold mb-5">NEW CUSTOMERS</h1>
+        <p className="text-[#3A7B74]">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+        <button onClick={onClickRoute} className="bg-[#3A7B74] px-8 py-1.5 self-left hover:bg-transparent border-2 border-[#3A7B74] hover:border-2 hover:border-[#3A7B74] hover:text-[#3A7B74] text-white rounded-md">Create an account</button>
+        </div>
+      </div>
+      
+      
+      <div className=" md:w-[50%] w-full space-y-8 ">
+        <div>
+          <h2 className="text-left text-3xl font-bold text-gray-700">
+          LOG IN TO YOUR ACCOUNT
           </h2>
         </div>
-        <form className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
+        <div className="mt-8 space-y-6">
+          <div className="flex flex-col space-y-6">
+            
+            <div className="w-full flex flex-row space-x-4 py-4 items-center border-[1px] border-gray-300 px-3">
+              <Mail size={18} color="#3A7B74"/>
               <input
                 id="email-address"
                 name="email"
                 type="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                className="focus:outline-0 text-[#3A7B74] bg-transparent placeholder:text-[#3A7B74]"
+                placeholder="Email"
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
+
+
+            <div className="w-full flex flex-row space-x-4 py-4 items-center border-[1px] border-gray-300 px-3">
+              <KeyRoundIcon size={18} color="#3A7B74"/>
               <input
                 id="password"
                 name="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="focus:outline-0 text-[#3A7B74] bg-transparent placeholder:text-[#3A7B74]"
                 placeholder="Password"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-
+          <div className="flex items-center justify-end space-x-7">
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+                className="font-medium text-gray-300 hover:text-gray-800"
               >
                 Forgot your password?
               </a>
             </div>
-          </div>
 
-          <div>
+            <div>
             <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              onClick={onClickSubmitLogin}
+              className="bg-[#3A7B74] px-6 font-light py-2 rounded-lg text-white"
             >
               Sign in
             </button>
           </div>
-        </form>
+
+
+
+
+
+          </div>
+
+          
+        </div>
       </div>
+    </div>
     </div>
   );
 };

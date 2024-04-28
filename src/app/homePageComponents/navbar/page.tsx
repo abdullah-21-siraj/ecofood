@@ -9,11 +9,26 @@ import { Repeat2 } from 'lucide-react';
 import { Heart } from "lucide-react";
 import { User } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
+import { motion } from "framer-motion";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSubTypes, setShowSubTypes] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAccountInfo, setShowAccountInfo] = useState(false);
+
+  const FADE_DOWN_ANIMATION_VARIANTS = {
+    hidden: { opacity: 0, y: -10 },
+    show: { opacity: 1, y: 0, transition: { type: "spring" } },
+  };
+
+  const FADE_UP_ANIMATION_VARIANTS = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { type: "spring" } },
+  };
+
+
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -38,7 +53,7 @@ export default function NavBar() {
     : [];
 
   return (
-    <>
+    <motion.div>
       <header className="bg-contrast-green-500 text-black bg-zinc-100">
         <div className="flex flex-row flex-grow lg:flex bg-[#458E7A] text-white">
           <Link
@@ -77,36 +92,60 @@ export default function NavBar() {
               </div>
             </div>
 
-            
+
             <div className="text-center relative m-3 w-[40%] bg-white flex justify-between flex-row px-8 py-3 rounded-full transition duration-300  lg:flex md:flex">
               <input className="bg-transparent outline-none focus:outline-none" placeholder="Search..." type="search" name="" id="" value={searchTerm}
                 onChange={handleInputChange} />
-              <Search color="#458E7A" size={20}/>
-            <div className={`absolute ${searchedProducts.length > 0 ? 'block' : 'hidden'} cursor-pointer z-20 mt-12 left-2  w-[400px] shadow-md  h-[600px] bg-white max-h-[600px] overflow-y-auto`}>
-              
-              <div className="flex flex-col space-y-3">
-              {searchedProducts.map((product: any) => (<div className=" space-x-2 py-4 px-2 flex items-center text-black ">
-                <Image alt="/productImage" src={"/randomPhoto.jpg"} width={100} height={100}/>
-                
-                <div className="flex flex-col justify-start space-y-6 ">
-                <h1 className="text-xl font-semibold">{product.name}</h1>
-                <span className="text-xs text-gray-600">{product.price}</span>
+              <Search color="#458E7A" size={20} />
+              <div className={`absolute ${searchedProducts.length > 0 ? 'block' : 'hidden'} cursor-pointer z-20 mt-12 left-2  w-[400px] shadow-md  h-[600px] bg-white max-h-[600px] overflow-y-auto`}>
+
+                <div className="flex flex-col space-y-3">
+                  {searchedProducts.map((product: any) => (<div className=" space-x-2 py-4 px-2 flex items-center text-black ">
+                    <Image alt="/productImage" src={"/randomPhoto.jpg"} width={100} height={100} />
+
+                    <div className="flex flex-col justify-start space-y-6 ">
+                      <h1 className="text-xl font-semibold">{product.name}</h1>
+                      <span className="text-xs text-gray-600">{product.price}</span>
+                    </div>
+
+                  </div>
+                  ))}
                 </div>
-                
-              </div>
-              ))}
               </div>
             </div>
-            </div>
-            
+
 
 
           </div>
 
           <div className="ml-auto flex flex-row items-center justify-center lg:justify-end  lg:block md:block ">
-            <div className="text-center m-3 cursor-pointer flex space-x-3 transition duration-300">
+            <div onMouseEnter={() => setShowAccountInfo(true)} onMouseLeave={() => setShowAccountInfo(false)} className="relative text-center m-3 cursor-pointer flex space-x-3 transition duration-500">
               <User />
               <span className="font-semibold"> My Account </span>
+              <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS}
+                initial="hidden"
+                animate={showAccountInfo ? "show" : "hidden"} className={`bg-white ${showAccountInfo ? 'block' : 'hidden'} w-[200px] text-left right-0 top-6 h-[220px] shadow-md  z-20 absolute`}>
+
+                <div className="border-b-2  py-3 px-3 delay-75 transition-all border-gray-300 hover:bg-[#313537] hover:text-white">
+                  <Link className=" px-4  " href={"/login"}>INFORMATION</Link>
+                </div>
+
+                <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
+                  <Link href={"#"}>ADD FIRST ADDRESS</Link>
+                </div>
+
+
+                <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
+                  <Link href={"#"}>ORDER HISTORY AND DETAILS</Link>
+                </div>
+
+                <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
+                  <Link href={"#"}>CREDIT SLIPS</Link>
+                </div>
+
+              </motion.div>
+
+
             </div>
             <div className="text-center m-3 cursor-pointer flex space-x-3 transition duration-300">
               <ShoppingCart />
@@ -312,6 +351,6 @@ export default function NavBar() {
         </div>
         <hr className="bg-green-800" />
       </header>
-    </>
+    </motion.div>
   );
 }
