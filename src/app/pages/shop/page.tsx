@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import products from "@/app/product";
-import HeartButton from "@/app/heartButton";
-import AddToCartButton from "@/app/addToCartButton";
-
+import React, { ReactNode, useState } from "react";
+import products from "../../product";
+import HeartButton from "../../heartButton";
+import CartPage from "../../cart/page";
+import AddToCartButton from "../../cart/AddToCartButton";
+import QuantityButton from "../../cart/quantityButton";
 interface Product {
+  [x: string]: ReactNode;
   id: number;
   category: string;
   price: string;
@@ -22,6 +23,11 @@ function Shop() {
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [showCart, setShowCart] = useState(false);
+
+  function toggleCart() {
+    setShowCart((prevShowCart) => !prevShowCart);
+  }
 
   function checkAvailable() {
     setAvailable((prevAvailable) => !prevAvailable);
@@ -83,8 +89,14 @@ function Shop() {
     event: React.ChangeEvent<HTMLSelectElement>
   ) {
     setItemsPerPage(parseInt(event.target.value));
-    setCurrentPage(1); // Reset to first page when changing items per page
+    setCurrentPage(1);
   }
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -170,6 +182,14 @@ function Shop() {
           <option value={15}>15</option>
           <option value={20}>20</option>
         </select>
+        <div className="my-4 bg-amber-100 rounded-lg flex justify-center item-center mx-12">
+          <button className="mx-5" onClick={toggleCart}>
+            View Cart
+          </button>
+          <div className="flex flex-col bg-red-100">
+            {showCart && <CartPage cart={cart} />}
+          </div>
+        </div>
       </div>
 
       <div className="col-span-1 md:col-span-3 ">
@@ -194,12 +214,11 @@ function Shop() {
                   <p className="text-gray-700">{product.name}</p>
                 </div>
                 <div className="py-2 mx-2 flex justify-between">
-                  <AddToCartButton onAddToCart={undefined} />
+                  <AddToCartButton addToCart={addToCart} item={product} />
                   <HeartButton />
                 </div>
-                <div className="py-2 mx-2 flex justify-between">
-                  <div className="font-bold">{product.category}</div>
-                  <div className="italic">{product.show}</div>
+                <div className=" flex justify-center">
+                  <QuantityButton />
                 </div>
               </div>
             </div>

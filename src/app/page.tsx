@@ -5,6 +5,7 @@ import ThreeDives from "./homePageComponents/heroSectionTwo/page";
 import HeroSection from "./homePageComponents/herosection/page";
 import TwoColumnText from "./homePageComponents/twoCoulmnText/page";
 import HeroSectionFour from "./homePageComponents/heroSectionFour/page";
+import AddToCartButton from "./add";
 
 export default function Home() {
   return (

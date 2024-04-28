@@ -1,41 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 // import SearchComponent from "@/app/searchComponents";
-import { Search } from 'lucide-react';
-import { Repeat2 } from 'lucide-react';
+import { Search } from "lucide-react";
+import { Repeat2 } from "lucide-react";
 import { Heart } from "lucide-react";
-import { User } from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
-import { motion } from "framer-motion";
+import { User } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSubTypes, setShowSubTypes] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [showAccountInfo, setShowAccountInfo] = useState(false);
-
-  const FADE_DOWN_ANIMATION_VARIANTS = {
-    hidden: { opacity: 0, y: -10 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
-
-  const FADE_UP_ANIMATION_VARIANTS = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
-
-
-
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-
-  const searchProducts = [{ id: 1, name: "mango", price: "$23.12" }, { id: 2, name: "Apple", price: "$11.12" }, { id: 3, name: "Orange", price: "$50.12" }, { id: 4, name: "Banana", price: "$26.07" }, { id: 5, name: "Grapes", price: "$21.56" }, { id: 6, name: "Guava", price: "$12.53" }]
+  const searchProducts = [
+    { id: 1, name: "mango", price: "$23.12" },
+    { id: 2, name: "Apple", price: "$11.12" },
+    { id: 3, name: "Orange", price: "$50.12" },
+    { id: 4, name: "Banana", price: "$26.07" },
+    { id: 5, name: "Grapes", price: "$21.56" },
+    { id: 6, name: "Guava", price: "$12.53" },
+  ];
 
   const handleInputChange = (event: any) => {
     setSearchTerm(event.target.value);
@@ -48,8 +39,8 @@ export default function NavBar() {
 
   const searchedProducts = searchTerm
     ? searchProducts.filter((product: any) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     : [];
 
   return (
@@ -78,7 +69,6 @@ export default function NavBar() {
             </Link>
           </div>
           <div className="flex flex-row items-center justify-center flex-grow lg:flex">
-
             <div className="flex flex-row justify-between items-center">
               <div className="text-center m-3  items-center cursor-pointer transition space-x-3 font-semibold duration-300 hidden lg:flex md:flex">
                 <Repeat2 size={20} />
@@ -92,48 +82,72 @@ export default function NavBar() {
               </div>
             </div>
 
-
             <div className="text-center relative m-3 w-[40%] bg-white flex justify-between flex-row px-8 py-3 rounded-full transition duration-300  lg:flex md:flex">
-              <input className="bg-transparent outline-none focus:outline-none" placeholder="Search..." type="search" name="" id="" value={searchTerm}
-                onChange={handleInputChange} />
+              <input
+                className="bg-transparent outline-none focus:outline-none"
+                placeholder="Search..."
+                type="search"
+                name=""
+                id=""
+                value={searchTerm}
+                onChange={handleInputChange}
+              />
               <Search color="#458E7A" size={20} />
-              <div className={`absolute ${searchedProducts.length > 0 ? 'block' : 'hidden'} cursor-pointer z-20 mt-12 left-2  w-[400px] shadow-md  h-[600px] bg-white max-h-[600px] overflow-y-auto`}>
-
+              <div
+                className={`absolute ${
+                  searchedProducts.length > 0 ? "block" : "hidden"
+                } cursor-pointer z-20 mt-12 left-2  w-[400px] shadow-md  h-[600px] bg-white max-h-[600px] overflow-y-auto`}
+              >
                 <div className="flex flex-col space-y-3">
-                  {searchedProducts.map((product: any) => (<div className=" space-x-2 py-4 px-2 flex items-center text-black ">
-                    <Image alt="/productImage" src={"/randomPhoto.jpg"} width={100} height={100} />
+                  {searchedProducts.map((product: any) => (
+                    <div className=" space-x-2 py-4 px-2 flex items-center text-black ">
+                      <Image
+                        alt="/productImage"
+                        src={"/randomPhoto.jpg"}
+                        width={100}
+                        height={100}
+                      />
 
-                    <div className="flex flex-col justify-start space-y-6 ">
-                      <h1 className="text-xl font-semibold">{product.name}</h1>
-                      <span className="text-xs text-gray-600">{product.price}</span>
+                      <div className="flex flex-col justify-start space-y-6 ">
+                        <h1 className="text-xl font-semibold">
+                          {product.name}
+                        </h1>
+                        <span className="text-xs text-gray-600">
+                          {product.price}
+                        </span>
+                      </div>
                     </div>
-
-                  </div>
                   ))}
                 </div>
               </div>
             </div>
-
-
-
           </div>
 
           <div className="ml-auto flex flex-row items-center justify-center lg:justify-end  lg:block md:block ">
-            <div onMouseEnter={() => setShowAccountInfo(true)} onMouseLeave={() => setShowAccountInfo(false)} className="relative text-center m-3 cursor-pointer flex space-x-3 transition duration-500">
+            <div
+              onMouseEnter={() => setShowAccountInfo(true)}
+              onMouseLeave={() => setShowAccountInfo(false)}
+              className="relative text-center m-3 cursor-pointer flex space-x-3 transition duration-500"
+            >
               <User />
               <span className="font-semibold"> My Account </span>
-              <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS}
+              <motion.div
+                variants={FADE_DOWN_ANIMATION_VARIANTS}
                 initial="hidden"
-                animate={showAccountInfo ? "show" : "hidden"} className={`bg-white ${showAccountInfo ? 'block' : 'hidden'} w-[200px] text-left right-0 top-6 h-[220px] shadow-md  z-20 absolute`}>
-
+                animate={showAccountInfo ? "show" : "hidden"}
+                className={`bg-white ${
+                  showAccountInfo ? "block" : "hidden"
+                } w-[200px] text-left right-0 top-6 h-[220px] shadow-md  z-20 absolute`}
+              >
                 <div className="border-b-2  py-3 px-3 delay-75 transition-all border-gray-300 hover:bg-[#313537] hover:text-white">
-                  <Link className=" px-4  " href={"/login"}>INFORMATION</Link>
+                  <Link className=" px-4  " href={"/login"}>
+                    INFORMATION
+                  </Link>
                 </div>
 
                 <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
                   <Link href={"#"}>ADD FIRST ADDRESS</Link>
                 </div>
-
 
                 <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
                   <Link href={"#"}>ORDER HISTORY AND DETAILS</Link>
@@ -142,10 +156,7 @@ export default function NavBar() {
                 <div className="border-b-2 py-3 px-3 delay-75 transition-all  border-gray-300 hover:bg-[#313537] hover:text-white">
                   <Link href={"#"}>CREDIT SLIPS</Link>
                 </div>
-
               </motion.div>
-
-
             </div>
             <div className="text-center m-3 cursor-pointer flex space-x-3 transition duration-300">
               <ShoppingCart />
@@ -267,8 +278,9 @@ export default function NavBar() {
           </Link>
         </div>
         <div
-          className={`${menuOpen ? "flex flex-col" : "hidden"
-            } lg:hidden md:hidden`}
+          className={`${
+            menuOpen ? "flex flex-col" : "hidden"
+          } lg:hidden md:hidden`}
         >
           <Link
             href="/"

@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import products from "@/app/product";
-import HeartButton from "@/app/heartButton";
-import AddToCartButton from "@/app/addToCartButton";
+import products from "../../product";
+import HeartButton from "../../heartButton";
+import AddToCartButton from "../shop/AddToCart";
 
 interface Product {
   id: number;
